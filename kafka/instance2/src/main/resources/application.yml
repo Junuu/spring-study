@@ -1,0 +1,38 @@
+server:
+  port: 8081
+
+spring:
+  profiles:
+    active: local
+
+  kafka:
+    producer:
+      bootstrap-servers: localhost:9092
+    consumer:
+      properties:
+        max:
+          poll:
+            interval:
+              ms: 10000
+      auto-offset-reset: latest
+      bootstrap-servers: localhost:9092
+      enable-auto-commit: false
+
+    listener:
+      ack-mode: manual
+
+
+---
+spring:
+  profiles:
+    active: dev
+
+  kafka:
+    producer:
+      bootstrap-servers: localhost:9092
+    consumer:
+      auto-offset-reset: latest
+      bootstrap-servers: localhost:9092
+      enable-auto-commit: false
+    listener:
+      ack-mode: manual

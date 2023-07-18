@@ -1,0 +1,2 @@
+### event 전송
+POST localhost:8080/send-event

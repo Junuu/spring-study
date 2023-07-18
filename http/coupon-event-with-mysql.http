@@ -1,0 +1,10 @@
+### test이름을 가진 event-coupon의 정보를 가져온다
+GET localhost:8080/event-coupon/test
+
+### test
+POST localhost:8080/user/1/coupon
+Content-Type: application/json
+
+{
+  "couponName": "test"
+}

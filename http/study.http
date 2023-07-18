@@ -1,0 +1,12 @@
+### 성능테스트를 위한 Controller 테스트
+POST localhost:8080/performance
+
+### 성능테스트 후 에러율에 따른 session Count 측정 결과
+GET localhost:8080/session-count
+
+### 의도적인 Memory Leak 만들어내기
+POST localhost:8080/memory-leak
+
+### memory leak이 발생하는지 테스트
+GET localhost:8080/memory-leak-session-count
+

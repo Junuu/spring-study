@@ -1,0 +1,29 @@
+# Database Settings
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb;MODE=mysql;
+    username: sa
+    password:
+    driverClassName: org.h2.Driver
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      org.hibernate.envers.audit_table_suffix: _history
+      org.hibernate.envers.revision_field_name: rev_id
+      org.hibernate.envers.store_data_at_delete: true
+      org.hibernate.envers.do_not_audit_optimistic_locking_field: false
+      hibernate:
+        format_sql: true
+    show-sql: true
+
+
+
+
+
+

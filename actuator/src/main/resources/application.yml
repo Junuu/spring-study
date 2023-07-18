@@ -1,0 +1,21 @@
+management:
+  health:
+    db:
+      enabled: false
+    redis:
+      enabled: false
+  endpoint:
+    health:
+      show-details: always
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/your_database_name
+    username: your_postgres_username
+    password: your_postgres_password
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect

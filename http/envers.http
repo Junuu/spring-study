@@ -1,0 +1,10 @@
+### audit INSERT -> UPDATE -> DELETE 주기 돌리기
+GET localhost:8080/audit
+
+
+### JPQL로 update 테스트
+GET localhost:8080/update-with-jqpl?boardId=d17d4b3f-c18b-4950-b0b0-d20630bbd093
+
+### dirty-checking update 테스트
+GET localhost:8080/update-with-jqpl?boardId=d17d4b3f-c18b-4950-b0b0-d20630bbd093
+update-with-dirty-check
