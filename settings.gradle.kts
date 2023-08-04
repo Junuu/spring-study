@@ -12,6 +12,7 @@ include("jpa-transaction-all-using")
 include("actuator")
 include("transactional-and-database-connection")
 include("transactional-rollback")
+include("transactional-outer-call")
 
 include("kafka:instance1")
 findProject(":kafka:instance1")?.name = "instance1"
