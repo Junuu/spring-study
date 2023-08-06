@@ -1,0 +1,35 @@
+### 다음상태로 진행
+PUT localhost:8080/change-state
+Content-Type: application/json
+
+{
+  "behavior": "nextProcess",
+  "invoiceCode": null
+}
+
+### 배송상태로 변경하기 위해서는 송장번호가 필요!
+PUT localhost:8080/change-state
+Content-Type: application/json
+
+{
+  "behavior": "nextProcess",
+  "invoiceCode": "temp-invoice-code"
+}
+
+### 취소
+PUT localhost:8080/change-state
+Content-Type: application/json
+
+{
+  "behavior": "cancle",
+  "invoiceCode": null
+}
+
+### 환불
+PUT localhost:8080/change-state
+Content-Type: application/json
+
+{
+  "behavior": "refund",
+  "invoiceCode": null
+}
