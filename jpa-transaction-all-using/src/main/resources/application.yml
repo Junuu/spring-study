@@ -1,7 +1,10 @@
 server:
   tomcat:
     threads:
-      max: 2 # 생성할 수 있는 thread의 총 개수
+      max: 1 # 생성할 수 있는 thread의 총 개수
+    accept-count: 10 # 활성 스레드가 없을 때 대기열의 개수
+    max-connections: 1 #연결할 수 있는 Connector 수
+    connection-timeout: -1
 #    max-connections:
 
 

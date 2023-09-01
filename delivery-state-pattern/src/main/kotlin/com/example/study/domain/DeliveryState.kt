@@ -80,7 +80,7 @@ object DeliveringState : DeliveryState{
 }
 
 object CompleteState : DeliveryState{
-    override fun cancel(delivery: Delivery) {
+    override     fun cancel(delivery: Delivery) {
         println("CompleteState is ready for DeliveringState.")
         delivery.state = DeliveringState
     }

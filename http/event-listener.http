@@ -1,2 +1,8 @@
 ### event 전송
 POST localhost:8080/send-event
+
+### data save event 전송
+POST localhost:8080/send-data-save-event
+
+### data save event 전송
+POST localhost:8080/async-debug
