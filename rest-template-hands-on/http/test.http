@@ -1,0 +1,37 @@
+GET localhost:8080/test
+
+###
+GET localhost:8080/outer-call
+
+###
+GET localhost:8080/object-test
+
+###
+GET localhost:8080/nested-object-test
+
+###
+GET localhost:8080//query-test
+
+###
+GET localhost:8080//path-test
+
+###
+GET localhost:8080//header-test
+
+###
+POST localhost:8080//post-test
+
+###
+POST localhost:8080//post-location-test
+
+###
+DELETE localhost:8080//delete-test
+
+###
+DELETE localhost:8080//delete-exchange-test
+
+###
+GET localhost:8080//error-handle
+
+###
+GET localhost:8080//time-out

@@ -15,6 +15,7 @@ include("transactional-rollback")
 include("transactional-outer-call")
 include("delivery-state-pattern")
 include("json-serialize-deserialize")
+include("rest-template-hands-on")
 
 include("kafka:instance1")
 findProject(":kafka:instance1")?.name = "instance1"
