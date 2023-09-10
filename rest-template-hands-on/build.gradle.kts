@@ -8,4 +8,6 @@ bootJar.enabled = true
 
 dependencies {
 	implementation(project(":core"))
+	implementation("org.springframework.retry:spring-retry")
+	implementation("org.springframework.boot:spring-boot-starter-aop")
 }

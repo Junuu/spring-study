@@ -35,3 +35,12 @@ GET localhost:8080//error-handle
 
 ###
 GET localhost:8080//time-out
+
+###
+GET localhost:8080//time-out-retry
+
+###
+GET localhost:8080//time-out-rest-template-retry
+
+###
+GET localhost:8080//time-out-rest-template-retry-v2
