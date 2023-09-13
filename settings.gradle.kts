@@ -17,6 +17,8 @@ include("delivery-state-pattern")
 include("json-serialize-deserialize")
 include("rest-template-hands-on")
 include("excel-hands-on")
+include("spring-filter")
+include("spring-security-method-role")
 
 include("kafka:instance1")
 findProject(":kafka:instance1")?.name = "instance1"
