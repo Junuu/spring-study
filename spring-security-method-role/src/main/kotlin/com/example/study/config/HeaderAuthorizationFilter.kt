@@ -9,18 +9,16 @@ import org.springframework.security.core.Authentication
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.context.SecurityContextHolder
-import org.springframework.stereotype.Component
 import org.springframework.web.filter.OncePerRequestFilter
 
-@Component
-class AuthorizationFilter : OncePerRequestFilter() {
+
+open class MyAuthorizationFilter : OncePerRequestFilter() {
     override fun doFilterInternal(request: HttpServletRequest, response: HttpServletResponse, chain: FilterChain) {
         val isFail = runCatching {
             val role = request.getHeader("role").uppercase()
             val authorities: List<GrantedAuthority> = listOf(SimpleGrantedAuthority("$ROLE_PREFIX$role"))
             val authentication: Authentication = UsernamePasswordAuthenticationToken(null, "", authorities)
             SecurityContextHolder.getContext().authentication = authentication
-
             chain.doFilter(request, response)
         }.isFailure
 

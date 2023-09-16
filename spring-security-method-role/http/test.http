@@ -9,3 +9,10 @@ role: user
 ### BAD
 GET localhost:8080/admin/admin-path
 role: user
+
+### GET
+GET localhost:8080/
+
+### GET
+GET localhost:8080/actuator
+
