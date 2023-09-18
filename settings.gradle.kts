@@ -19,6 +19,7 @@ include("json-serialize-deserialize")
 include("rest-template-hands-on")
 include("excel-hands-on")
 include("spring-filter")
+include("spring-batch")
 include("spring-security-method-role")
 
 include("kafka:instance1")

@@ -10,9 +10,8 @@ import org.springframework.stereotype.Component
 @Component
 class ResponseRequestLoggingFilter: Filter {
     override fun doFilter(request: ServletRequest, response: ServletResponse, chain: FilterChain) {
-        logger.info {"request: $request"}
-        logger.info {"response: $response"}
-        chain.doFilter(request,response)
+        logger.info { "request: $request" }
+        logger.info { "response: $response" }
+        chain.doFilter(request, response)
     }
-
 }
