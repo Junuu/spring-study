@@ -7,9 +7,11 @@ bootJar.enabled = true
 
 
 dependencies {
+	implementation(project(":core"))
+	implementation ("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-batch")
 	runtimeOnly("org.postgresql:postgresql:42.3.5")
+
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.batch:spring-batch-test")
-	implementation(project(":core"))
 }
