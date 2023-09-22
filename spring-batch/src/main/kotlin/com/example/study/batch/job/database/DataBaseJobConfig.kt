@@ -56,7 +56,7 @@ class DataBaseJobConfig(
     @Bean
     fun findTestJpaEntityReader(
         dataSource: DataSource,
-        @Value("#{jobParameters['current.date']}") currentDate: String,
+        @Value("#{jobParameters['current.dates']}") currentDate: String,
     ): JdbcCursorItemReader<ReaderDto> {
         logger.info { "currentDate: $currentDate" }
 

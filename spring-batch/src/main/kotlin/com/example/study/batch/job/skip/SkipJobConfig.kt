@@ -1,62 +1,47 @@
-package com.example.study.batch.job.test
+package com.example.study.batch.job.skip
 
-import com.example.study.application.jpa.TestJpaEntity
-import com.example.study.application.jpa.TestJpaEntityRepository
+import com.example.study.batch.job.CustomSkipPolicy
 import com.example.study.log.logger
-import jakarta.annotation.PostConstruct
 import org.springframework.batch.core.Job
 import org.springframework.batch.core.Step
-import org.springframework.batch.core.StepContribution
 import org.springframework.batch.core.job.builder.JobBuilder
 import org.springframework.batch.core.launch.support.RunIdIncrementer
 import org.springframework.batch.core.repository.JobRepository
-import org.springframework.batch.core.scope.context.ChunkContext
 import org.springframework.batch.core.step.builder.StepBuilder
 import org.springframework.batch.item.Chunk
 import org.springframework.batch.item.ItemReader
 import org.springframework.batch.item.ItemWriter
 import org.springframework.batch.item.support.ListItemReader
-import org.springframework.batch.repeat.RepeatStatus
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.Profile
 import org.springframework.transaction.PlatformTransactionManager
+import java.lang.IllegalArgumentException
 
-
-@Profile("test-job")
+@Profile("skip-job")
 @Configuration
-class TestJobConfig @Autowired constructor(
+class SkipJobConfig(
     private val jobRepository: JobRepository,
     private val batchTransactionManager: PlatformTransactionManager,
-    private val testJpaEntityRepository: TestJpaEntityRepository,
 ) {
     @Bean
-    fun firstJob(): Job {
-        return JobBuilder("first job", jobRepository)
+    fun skipJob(): Job {
+        return JobBuilder("skipJob job", jobRepository)
             .incrementer(RunIdIncrementer())
             .start(chunkStep())
-            .next(taskletStep())
             .build()
     }
 
     @Bean
-    fun taskletStep(): Step {
-        logger.info("TaskletStep is start")
-        return StepBuilder("first step", jobRepository)
-            .tasklet({ _: StepContribution, chunkContext: ChunkContext ->
-                logger.info("This is first tasklet step")
-                logger.info("SEC = {}", chunkContext.stepContext.stepExecutionContext)
-                RepeatStatus.FINISHED
-            }, batchTransactionManager).build()
-    }
-
-    @Bean
     fun chunkStep(): Step {
-        return StepBuilder("first step", jobRepository)
+        return StepBuilder("skipJob step", jobRepository)
             .chunk<String, String>(BATCH_SIZE, batchTransactionManager)
             .reader(beanReader())
             .writer(ClassItemWriter())
+            .faultTolerant()
+//            .skip(IllegalArgumentException::class.java)
+//            .skipLimit(20)
+            .skipPolicy(CustomSkipPolicy())
             .build()
     }
 
@@ -92,7 +77,12 @@ class TestJobConfig @Autowired constructor(
             logger.info("Writing item start")
             itmes.forEach {
                 logger.info("Writing item : {}", it)
+                if(it.contains('o')){
+                    logger.warn("o가 포함되어 IllegalArgumentException 발생 {}", it)
+                    throw IllegalArgumentException("문자에 o가 들어가는 경우 예외를 만들면 어떻게 될까?")
+                }
             }
+
         }
     }
 
