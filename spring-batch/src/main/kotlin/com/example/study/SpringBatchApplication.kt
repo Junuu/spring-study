@@ -2,6 +2,7 @@ package com.example.study
 
 import com.example.study.application.jpa.TestJpaEntity
 import com.example.study.application.jpa.TestJpaEntityRepository
+import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing
 import org.springframework.boot.ApplicationArguments
 import org.springframework.boot.ApplicationRunner
 import org.springframework.boot.autoconfigure.SpringBootApplication
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Component
 
 
 //@EnableBatchProcessing 넣으면 안됨
+@EnableBatchProcessing
 @SpringBootApplication
 class SpringBatchApplication
 

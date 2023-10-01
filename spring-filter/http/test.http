@@ -9,3 +9,25 @@ role: user
 ### BAD
 GET localhost:8080/admin-path
 role: user
+
+### 로깅 테스트
+GET localhost:8080/path-and-header-logging/1234
+role: admin
+
+### 로깅 테스트
+POST localhost:8080/request-body
+content-type: application/json
+role: admin
+
+{
+  "id": "1234",
+  "role": "user"
+}
+
+### 로깅 예외 테스트
+GET localhost:8080/exception-log
+role: admin
+
+###
+GET localhost:8080/exception-log-v2
+role: admin

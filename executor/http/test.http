@@ -1,0 +1,8 @@
+###  curl -X POST http://localhost:8080/actuator/shutdown
+POST http://localhost:8080/actuator/shutdown
+
+### actuator 확인
+GET http://localhost:8080/actuator
+
+### task 호출
+GET http://localhost:8080/task

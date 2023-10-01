@@ -7,7 +7,7 @@ import java.lang.Thread.sleep
 import java.util.concurrent.ScheduledExecutorService
 import java.util.concurrent.TimeUnit
 
-@RestController
+//@RestController
 class ScheduledCautionController(
     private val scheduledExecutorServiceCautionConfig: ScheduledExecutorService,
 ){

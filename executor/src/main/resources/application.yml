@@ -1,0 +1,15 @@
+# actuator
+management:
+  endpoint:
+    shutdown:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+#server:
+#  port: 8080
+#  shutdown:
+#    grace-period: 60000		# 최대 60초 대기
+

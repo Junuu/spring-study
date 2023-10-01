@@ -11,16 +11,16 @@ class FilterConfig{
     fun authorizationFilterRegistration(authorizationFilter: AuthorizationFilter): FilterRegistrationBean<*> {
         val filterRegistrationBean = FilterRegistrationBean<Filter>()
         filterRegistrationBean.filter = authorizationFilter
-        filterRegistrationBean.order = 1
+        filterRegistrationBean.order = 2
         filterRegistrationBean.addUrlPatterns("/*")
         return filterRegistrationBean
     }
 
     @Bean
-    fun responseRequestLoggingFilterRegistration(responseRequestLoggingFilter: ResponseRequestLoggingFilter): FilterRegistrationBean<*>{
+    fun duplicateResponseRequestLoggingFilterRegistration(): FilterRegistrationBean<*>{
         val filterRegistrationBean = FilterRegistrationBean<Filter>()
-        filterRegistrationBean.filter = responseRequestLoggingFilter
-        filterRegistrationBean.order = 2
+        filterRegistrationBean.filter = ResponseRequestLoggingFilter()
+        filterRegistrationBean.order = 1
         filterRegistrationBean.addUrlPatterns("/*")
         return filterRegistrationBean
     }
