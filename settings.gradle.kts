@@ -21,6 +21,7 @@ include("excel-hands-on")
 include("spring-filter")
 include("spring-batch")
 include("spring-security-method-role")
+include("redis")
 
 include("kafka:instance1")
 findProject(":kafka:instance1")?.name = "instance1"
