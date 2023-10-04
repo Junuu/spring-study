@@ -1,1 +1,4 @@
 POST localhost:8080/transactional-rollback
+
+### rollback
+GET localhost:8080/rollback

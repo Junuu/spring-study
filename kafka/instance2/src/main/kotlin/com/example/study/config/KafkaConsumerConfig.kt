@@ -62,6 +62,7 @@ class KafkaConsumerConfig {
         factory.containerProperties
         factory.consumerFactory = consumerFactory()
         factory.setCommonErrorHandler(defaultErrorHandler)
+//        factory.containerProperties.setListenerTaskExecutor()
         return factory
     }
 }

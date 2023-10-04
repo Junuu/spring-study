@@ -3,6 +3,7 @@ package com.example.study.envers.controller
 import com.example.study.envers.repository.BoardJpaEntity
 import com.example.study.envers.repository.BoardJpaRepository
 import com.example.study.envers.repository.CommentJpaEntity
+import com.example.study.envers.repository.UserJpaEntity
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Propagation
 import org.springframework.transaction.annotation.Transactional
@@ -18,8 +19,10 @@ class BoardAuditCheckService(
         //INSERT
         val boardId = UUID.randomUUID().toString()
         val board = BoardJpaEntity(boardId = boardId, content = "content", comments = mutableListOf(
-            CommentJpaEntity(comment = "comment", boardId = boardId)
-        ))
+            CommentJpaEntity(comment = "comment", boardId = boardId),
+        ),
+            user = UserJpaEntity(),
+        )
 
         val savedBoardJpaEntity = boardJpaRepository.saveAndFlush(board)
 

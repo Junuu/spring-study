@@ -11,8 +11,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 @EnableJpaRepositories(repositoryFactoryBeanClass = EnversRevisionRepositoryFactoryBean::class)
 @EnableEnversRepositories
 @SpringBootApplication
-class Application
+class EnversApplication
 
 fun main(args: Array<String>) {
-	runApplication<Application>(*args)
+	runApplication<EnversApplication>(*args)
 }

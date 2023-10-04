@@ -17,14 +17,15 @@ open class LongRevisionEntity(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @RevisionNumber
     @Column(name = "rev_id")
-    var id: Long? = null,
+    open var id: Long? = null,
 
     @RevisionTimestamp
     @Column(name = "rev_timestamp")
-    var timestamp: Long? = null
+    open var timestamp: Long? = null
 ) : Serializable {
 
     private fun getRevisionDate() = timestamp?.let { Date(it) }
+
 
     override fun toString(): String =
         "LongRevisionEntity(id = $id, revisionDate = ${DateFormat.getDateTimeInstance().format(getRevisionDate())}"

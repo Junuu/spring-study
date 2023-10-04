@@ -11,17 +11,17 @@ import java.util.*
 open class CommentJpaEntity(
     @Id
     @Column(nullable = false)
-    val commentId: String = UUID.randomUUID().toString(),
+    open val commentId: String = UUID.randomUUID().toString(),
 
     @Column(nullable = false)
-    var comment: String,
+    open var comment: String,
 
     @Column(nullable = false)
-    var boardId: String,
+    open var boardId: String,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "boardId", referencedColumnName = "boardId", insertable = false, updatable = false)
-    var board: BoardJpaEntity? = null,
+    open var board: BoardJpaEntity? = null,
 )
 
 

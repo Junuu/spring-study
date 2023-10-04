@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController
 
 
 @RestController
-class BoardAuditCheckController(
+class   BoardAuditCheckController(
     private val boardAuditCheckService: BoardAuditCheckService,
     private val boardJpaRepository: BoardJpaRepository,
 ) {

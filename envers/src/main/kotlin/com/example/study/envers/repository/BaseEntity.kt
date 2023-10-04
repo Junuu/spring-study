@@ -15,9 +15,9 @@ import java.time.Instant
 abstract class BaseEntity {
     @CreatedDate
     @Column(nullable = false, updatable = false)
-    var createdAt: Instant = Instant.now()
+    open var createdAt: Instant = Instant.now()
 
     @LastModifiedDate
     @Column(nullable = false)
-    var modifiedAt: Instant = Instant.now()
+    open var modifiedAt: Instant = Instant.now()
 }

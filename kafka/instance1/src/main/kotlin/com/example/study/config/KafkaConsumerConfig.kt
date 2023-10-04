@@ -12,8 +12,8 @@ import org.springframework.kafka.core.ConsumerFactory
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory
 import org.springframework.kafka.support.serializer.JsonDeserializer
 
-@Configuration
-@EnableKafka
+//@Configuration
+//@EnableKafka
 class KafkaConsumerConfig {
     @Value("\${spring.kafka.consumer.bootstrap-servers}")
     private lateinit var BOOTSTRAP_ADDRESS: String

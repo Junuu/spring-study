@@ -21,4 +21,10 @@ class OuterService(
             logger.error{"outerService get error"}
         }
     }
+
+    @Transactional
+    fun `의도적으로 예외를 발생시키기`() {
+        testRepository.save(TestEntity(name = "firstSave"))
+        throw RuntimeException("의도적으로 runtime Exception을 던지면 rollback이 떻게 발생할까?")
+    }
 }

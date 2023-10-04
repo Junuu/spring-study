@@ -1,7 +1,9 @@
 package com.example.study.envers.repository
 
 import jakarta.persistence.*
+import org.apache.catalina.User
 import org.hibernate.envers.Audited
+import org.hibernate.envers.NotAudited
 import java.util.UUID
 
 @Entity
@@ -10,14 +12,21 @@ import java.util.UUID
 open class BoardJpaEntity(
     @Id
     @Column(nullable = false, name = "boardId")
-    val boardId: String = UUID.randomUUID().toString(),
+    open val boardId: String = UUID.randomUUID().toString(),
+
 
     @Column(nullable = false)
-    var content: String,
+    open var content: String,
 
     @Column(nullable = true)
-    var addColumn: String? = null,
+    open var addColumn: String? = null,
 
     @OneToMany(mappedBy = "board", cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
-    val comments: MutableList<CommentJpaEntity> = mutableListOf(),
+    @NotAudited
+    open val comments: MutableList<CommentJpaEntity> = mutableListOf(),
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL], optional = false)
+    @JoinColumn(name = "user_id", referencedColumnName = "userId", nullable = true)
+    @NotAudited
+    open var user: UserJpaEntity? = null,
 ): BaseEntity()

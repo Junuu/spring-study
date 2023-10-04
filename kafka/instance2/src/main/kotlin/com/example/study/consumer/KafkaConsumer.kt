@@ -21,7 +21,7 @@ class KafkaConsumer(
 
     @KafkaListener(
         topics = ["test"],
-        groupId = "#{ T(java.util.UUID).randomUUID().toString() }",
+        groupId = "test2",
         containerFactory = "myContainerFactory"
     )
     fun consume(
