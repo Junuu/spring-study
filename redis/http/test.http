@@ -1,2 +1,5 @@
 ### 티켓 판매
 POST localhost:8080/ticket
+
+### 재고 감소
+PATCH localhost:8080/stock
