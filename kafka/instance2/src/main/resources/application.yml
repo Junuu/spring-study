@@ -1,5 +1,6 @@
 server:
   port: 8081
+  shutdown: graceful
 
 spring:
   profiles:
@@ -10,16 +11,18 @@ spring:
       bootstrap-servers: localhost:9092
     consumer:
       properties:
-        max:
-          poll:
-            interval:
-              ms: 10000
+        max.poll.interval.ms: 10000
       auto-offset-reset: earliest
       bootstrap-servers: localhost:9092
       enable-auto-commit: false
+      max-poll-records: 100
 
     listener:
       ack-mode: manual
+      immediate-stop: false
+  lifecycle:
+    timeout-per-shutdown-phase: 60s
+
 
 
 ---
@@ -34,5 +37,8 @@ spring:
       auto-offset-reset: earliest
       bootstrap-servers: localhost:9092
       enable-auto-commit: false
+      max-poll-records: 100
     listener:
       ack-mode: manual
+      immediate-stop: true
+

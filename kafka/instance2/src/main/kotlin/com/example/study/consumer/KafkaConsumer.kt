@@ -21,7 +21,7 @@ class KafkaConsumer(
 
     @KafkaListener(
         topics = ["test"],
-        groupId = "test2",
+        groupId = "test6",
         containerFactory = "myContainerFactory"
     )
     fun consume(
@@ -29,9 +29,9 @@ class KafkaConsumer(
         acknowledgment: Acknowledgment,
     ) {
         logger.info("KafkaConsumer start: $payload")
-//        sleep(5000)
+        sleep(5000)
 //        kafkaConsumerService.messageOccurredException()
-        applicationEventPublisher.publishEvent(KafkaConsumeEvent(payload.col1))
+//        applicationEventPublisher.publishEvent(KafkaConsumeEvent(payload.col1))
         logger.info("KafkaConsumer end: $payload")
         acknowledgment.acknowledge()
     }

@@ -43,6 +43,8 @@ class KafkaConsumerConfig {
         props[ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG] = BOOTSTRAP_ADDRESS
         props[ConsumerConfig.AUTO_OFFSET_RESET_CONFIG] = AUTO_OFFSET_RESET
         props[ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG] = AUTO_COMMIT
+        props[ConsumerConfig.MAX_POLL_RECORDS_CONFIG] = 5
+
         return DefaultKafkaConsumerFactory(
             props,
             StringDeserializer(),
@@ -59,10 +61,11 @@ class KafkaConsumerConfig {
         val fixedBackOff = FixedBackOff(1000L, 2L)
         val defaultErrorHandler = DefaultErrorHandler(recover, fixedBackOff)
         factory.containerProperties.ackMode = ContainerProperties.AckMode.MANUAL_IMMEDIATE
-        factory.containerProperties
+        factory.containerProperties.shutdownTimeout = 10_000L //300_000L
         factory.consumerFactory = consumerFactory()
         factory.setCommonErrorHandler(defaultErrorHandler)
 //        factory.containerProperties.setListenerTaskExecutor()
+
         return factory
     }
 }

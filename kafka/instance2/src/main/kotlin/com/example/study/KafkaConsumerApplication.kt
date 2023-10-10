@@ -7,8 +7,8 @@ import org.springframework.scheduling.annotation.EnableAsync
 
 @SpringBootApplication
 @EnableAsync
-class Application
+class KafkaConsumerApplication
 
 fun main(args: Array<String>) {
-	runApplication<Application>(*args)
+	runApplication<KafkaConsumerApplication>(*args)
 }
