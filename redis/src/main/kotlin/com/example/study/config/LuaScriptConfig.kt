@@ -14,4 +14,10 @@ class LuaScriptConfig {
         val scriptSource = ClassPathResource("redis-scripts/stockDecrease.lua")
         return RedisScript.of(scriptSource, Long::class.java)
     }
+
+    @Bean
+    fun internalExceptionScript(): RedisScript<Unit>{
+        val scriptSource = ClassPathResource("redis-scripts/internalException.lua")
+        return RedisScript.of(scriptSource)
+    }
 }

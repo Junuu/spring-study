@@ -2,6 +2,7 @@ package com.example.study
 
 import com.example.study.adapter.RedisTransactionRollbackTest
 import com.example.study.adapter.RedisTransactionWithLuaScript
+import com.example.study.adapter.RedisTransactionWithLuaScriptRollback
 import com.example.study.entity.Ticket
 import com.example.study.entity.TicketRepository
 import com.example.study.service.DecreaseStockService
@@ -24,7 +25,13 @@ class ApplicationTests @Autowired constructor(
 	private val stringRedisTemplate: StringRedisTemplate,
 	private val redisTransactionRollbackTest: RedisTransactionRollbackTest,
 	private val redisTransactionWithLuaScript: RedisTransactionWithLuaScript,
+	private val redisTransactionWithLuaScriptRollback: RedisTransactionWithLuaScriptRollback,
 ) {
+
+	@Test
+	fun `luaScript 명령 중간에 예외가 발생하면 나머지 명령들은 어떻게 될까?`(){
+		redisTransactionWithLuaScriptRollback.internalException()
+	}
 
 	@Test
 	fun `luaScript 에러 메시지 확인을 위해 재고0으로 세팅하고 단건 호출`(){
