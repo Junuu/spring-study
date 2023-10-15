@@ -24,6 +24,7 @@ include("spring-security-method-role")
 include("redis")
 include("logging")
 include("deferred-join")
+include("proxy-target-class")
 
 include("kafka:instance1")
 findProject(":kafka:instance1")?.name = "instance1"
