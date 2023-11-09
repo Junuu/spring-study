@@ -1,6 +1,5 @@
 package com.example.study.consumer
 
-import com.example.study.listener.KafkaConsumeEvent
 import com.example.study.request.TestDto
 import com.example.study.service.KafkaConsumerService
 import mu.KotlinLogging
@@ -9,6 +8,7 @@ import org.springframework.kafka.annotation.KafkaListener
 import org.springframework.kafka.support.Acknowledgment
 import org.springframework.messaging.handler.annotation.Payload
 import org.springframework.stereotype.Component
+import java.lang.IllegalArgumentException
 import java.lang.Thread.sleep
 
 
@@ -29,6 +29,7 @@ class KafkaConsumer(
         acknowledgment: Acknowledgment,
     ) {
         logger.info("KafkaConsumer start: $payload")
+        throw IllegalArgumentException("일부러 예외만들어 보기")
         sleep(5000)
 //        kafkaConsumerService.messageOccurredException()
 //        applicationEventPublisher.publishEvent(KafkaConsumeEvent(payload.col1))

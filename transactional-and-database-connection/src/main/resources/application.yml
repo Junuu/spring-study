@@ -6,7 +6,7 @@ server:
 
 
 # Database Settings
-spring:
+(spring:
   datasource:
     url: jdbc:h2:mem:testdb;MODE=mysql;
     username: sa
@@ -24,7 +24,6 @@ spring:
       hibernate:
         format_sql: true
     show-sql: true
-
 
 
 management:

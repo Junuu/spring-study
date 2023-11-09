@@ -63,7 +63,7 @@ class KafkaConsumerConfig {
         factory.containerProperties.ackMode = ContainerProperties.AckMode.MANUAL_IMMEDIATE
         factory.containerProperties.shutdownTimeout = 10_000L //300_000L
         factory.consumerFactory = consumerFactory()
-        factory.setCommonErrorHandler(defaultErrorHandler)
+//        factory.setCommonErrorHandler(defaultErrorHandler)
 //        factory.containerProperties.setListenerTaskExecutor()
 
         return factory

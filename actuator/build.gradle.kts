@@ -8,8 +8,10 @@ bootJar.enabled = true
 
 dependencies {
 	implementation(project(":core"))
-
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
+	implementation("io.micrometer:micrometer-core")
+
 	implementation ("org.springframework.boot:spring-boot-starter-data-jpa")
-	runtimeOnly("org.postgresql:postgresql:42.3.5")
+	runtimeOnly ("com.h2database:h2")
+//	runtimeOnly("org.postgresql:postgresql:42.3.5")
 }

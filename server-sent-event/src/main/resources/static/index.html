@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <script>
+        const eventSource = new EventSource("/sse")
+        eventSource.onmessage = event => {
+            const p = document.createElement("p")
+            p.innerText = event.data
+
+            document.getElementById("messages").appendChild(p)
+        }
+    </script>
+</head>
+
+<body>
+<div id="messages"></div>
+</body>
+</html>

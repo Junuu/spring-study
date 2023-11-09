@@ -9,8 +9,8 @@ class MyThreadPool{
     @Bean
     fun myExecutor(): ThreadPoolTaskExecutor{
         val executor = ThreadPoolTaskExecutor()
-        executor.corePoolSize = 10
-        executor.maxPoolSize = 10
+        executor.corePoolSize = 1000
+        executor.maxPoolSize = 1000
         executor.queueCapacity = 0
         executor.setThreadNamePrefix("test-task-")
         executor.setWaitForTasksToCompleteOnShutdown(true)

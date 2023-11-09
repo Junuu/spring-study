@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit
 @SpringBootTest
 @ContextConfiguration(classes = [Application::class])
 @ActiveProfiles("local")
-class EmbeddedKafkaIntegrationTest(
+class EmbeddedKafkaIntegrationTest (
 	@Autowired private val producer: KafkaProducer,
 	@Autowired private val consumer: KafkaTestConsumer,
 ) {
@@ -26,7 +26,7 @@ class EmbeddedKafkaIntegrationTest(
 		val payload = TestDto("test","test")
 
 		// when
-		producer.send("testTopic", payload)
+		producer.send("testTopic")
 
 		// then
 		val result = consumer.latch.await(10L, TimeUnit.SECONDS)

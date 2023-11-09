@@ -6,3 +6,6 @@ GET http://localhost:8080/actuator
 
 ### task 호출
 GET http://localhost:8080/task
+
+### 테스트
+GET http://localhost:8080/stress-test

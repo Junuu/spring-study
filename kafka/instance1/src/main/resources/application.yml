@@ -15,6 +15,7 @@ spring:
     listener:
       ack-mode: manual
 
+
 ---
 
 spring:

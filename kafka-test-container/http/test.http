@@ -1,0 +1,5 @@
+### 메시지 100개 발송
+GET localhost:8080/produce-message
+
+### test
+GET localhost:8080/

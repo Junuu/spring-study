@@ -25,8 +25,14 @@ include("redis")
 include("logging")
 include("deferred-join")
 include("proxy-target-class")
+include("id-generator-test")
+include("server-sent-event")
 
 include("kafka:instance1")
 findProject(":kafka:instance1")?.name = "instance1"
 include("kafka:instance2")
-findProject(":kafka:instance2")?.name = "instance2"
+include("kafka:consumer-lag")
+findProject(":kafka:consumer-lag")?.name = "consumer-lag"
+
+include("gatling")
+include("mvc-request-param")

@@ -1,0 +1,16 @@
+server:
+  port: 8080
+
+spring:
+  kafka:
+    bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_ADDRESSES:localhost:9092}
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    consumer:
+      bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_ADDRESSES:localhost:9092}
+      value-deserializer: org.springframework.kafka.support.serializer.JsonSerializer
+      enable-auto-commit: false
+      auto-offset-commit: false
+      auto-offset-reset: earliest
+    listener:
+      ack-mode: MANUAL_IMMEDIATE

@@ -9,7 +9,7 @@ import java.util.*
 
 
 @Profile("local")
-@Configuration
+//@Configuration
 class EmbeddedKafkaConfig{
     val topicName: String = "testTopic"
 

@@ -1,0 +1,2 @@
+### request-param 기본값세팅
+GET localhost:8080/test?flag=false
