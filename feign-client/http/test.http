@@ -1,0 +1,8 @@
+
+GET localhost:8080/outer-call
+
+###
+GET localhost:8080/outer-call-404
+
+###
+GET localhost:8080/outer-call-400

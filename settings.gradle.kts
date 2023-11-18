@@ -36,3 +36,5 @@ findProject(":kafka:consumer-lag")?.name = "consumer-lag"
 
 include("gatling")
 include("mvc-request-param")
+include("feign-client")
+include("csv-parse")
