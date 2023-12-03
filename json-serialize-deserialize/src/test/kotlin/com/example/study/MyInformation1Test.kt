@@ -43,11 +43,21 @@ class MyInformation1Test{
 
     @Test
     fun `직렬화 역직렬화가 정상적으로 동작해야 한다`(){
+        val serializedPerson = objectMapper.writeValueAsString(PersonFixture.get())
+        Assertions.assertEquals(serializedPerson, """
+            {"name":"김준우","age":27,"birthDay":"1997-12-18T00:00:00"}
+        """.trimIndent())
+
+        val person = objectMapper.readValue(serializedPerson, Person::class.java)
+        Assertions.assertEquals(person.age, 27)
+    }
+
+    @Test
+    fun `직렬화 역직렬화가 정상적으로 동작해야 한다1`(){
         val objectMapper = ObjectMapper()
-            .registerModule(JavaTimeModule())
-            .registerModule(kotlinModule())
-            .setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY)
             .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+            .registerModule(kotlinModule())
+//            .registerModule(JavaTimeModule())
 
         val serializedPerson = objectMapper.writeValueAsString(PersonFixture.get())
         Assertions.assertEquals(serializedPerson, """
@@ -60,7 +70,7 @@ class MyInformation1Test{
     }
 }
 data class Person(
-    private val name: String,
+    val name: String,
     val age: Int,
     val birthDay: LocalDateTime,
 )

@@ -1,0 +1,8 @@
+###
+POST localhost:8080/jackson-test2
+Content-Type: application/json
+
+{
+  "id": "id",
+  "name":"name"
+}
