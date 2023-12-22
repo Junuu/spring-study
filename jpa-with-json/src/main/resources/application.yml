@@ -1,0 +1,25 @@
+# Database Settings
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/your_database_name?useSSL=false&allowPublicKeyRetrieval=true
+    username: your_database_user
+    password: your_database_password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true
+
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+
