@@ -42,3 +42,10 @@ include("coroutines")
 include("jpa-with-json")
 include("mongodb-crud-tutorial")
 include("hello-big-decimal")
+include("monitoring-system-prometheus-grafana")
+
+include("network-timeout:client")
+findProject(":network-timeout:client")?.name = "client"
+include("network-timeout:server")
+findProject(":network-timeout:server")?.name = "server"
+
