@@ -1,0 +1,5 @@
+### docker container 내부 ip 확인하기
+docker inspect -f "{{ .NetworkSettings.Networks.docker_monitoring-network.IPAddress }}" CONTAINER_ID
+
+### docker 에러로그 확인
+docker logs CONTAINER_ID
