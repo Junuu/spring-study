@@ -4,12 +4,24 @@ management:
       enabled: false
     redis:
       enabled: false
+  endpoint:
+    env:
+      show-values: ALWAYS
+    shutdown:
+
   endpoints:
     web:
       exposure:
-        include: metrics,health,tomcat
+        include: "*"
+    jmx:
+      exposure:
+        exclude: "*"
 #    health:
 #      show-details: always
+
+very:
+  important:
+    password: top-secret
 
 # Database Settings
 spring:

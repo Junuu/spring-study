@@ -9,7 +9,7 @@ import org.springframework.boot.ApplicationRunner
 import org.springframework.stereotype.Component
 import kotlin.system.measureTimeMillis
 
-@Component
+//@Component
 class CoroutinesLazyAsync : ApplicationRunner {
     override fun run(args: ApplicationArguments) {
         runBlocking {
