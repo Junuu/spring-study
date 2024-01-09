@@ -49,3 +49,5 @@ findProject(":network-timeout:client")?.name = "client"
 include("network-timeout:server")
 findProject(":network-timeout:server")?.name = "server"
 
+
+include("spring-cloud-config-server")

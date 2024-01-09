@@ -1,0 +1,3 @@
+test:
+  secret: password-dev
+  name: junwoo-dev

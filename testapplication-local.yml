@@ -1,0 +1,3 @@
+test:
+  secret: password-local
+  name: junwoo-local
