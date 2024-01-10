@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: testapplication      # 어플리케이션 이름 = Github 레포지토리에서 관리하는 파일 애플리케이션 이름
+  profiles:
+    active: local     # 애플리케이션 환경 = local, dev
+  config:
+    import: optional:configserver:http://localhost:8088 # import:optional:configserver사용 -> Spring cloud config server 주소
+server:
+  port: 9001     # Spring Cloud Config Client 주소
+
+# 클라이언트 코드에서 Actuator 설정
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
