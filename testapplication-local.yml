@@ -1,3 +1,9 @@
+spring:
+  cloud:
+    config:
+      allowOverride: true
+      overrideNone: true
+
 test:
   secret: password-local-change
   name: junwoo-local-change
