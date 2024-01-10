@@ -10,5 +10,6 @@ dependencies {
 	implementation(project(":core"))
 	implementation(enforcedPlatform("org.springframework.cloud:spring-cloud-dependencies:2022.0.4"))
 	implementation("org.springframework.cloud:spring-cloud-config-client")
+	implementation("org.springframework.cloud:spring-cloud-starter-bootstrap")
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
 }

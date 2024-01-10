@@ -14,3 +14,7 @@ management:
     web:
       exposure:
         include: "*"
+
+test:
+  secret: client-password
+  name: client-name
