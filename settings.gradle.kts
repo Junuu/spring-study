@@ -54,3 +54,4 @@ include("spring-cloud-config-server")
 include("spring-cloud-config-client")
 
 include("mongodb-concurrency-tutorial")
+include("kotlin-charset-reflection-annotation")
