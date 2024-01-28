@@ -13,7 +13,7 @@ class BasicSimulation : Simulation() { // 3
   val scn = scenario("BasicSimulation") // 7
     .exec(
       http("request_1") // 8
-        .get("/stress-test")
+        .put("/boards/65ad2f53cb5d4c3a831617dc/hit")
     ) // 9
     .pause(5) // 10
 
