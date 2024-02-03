@@ -14,7 +14,7 @@ fun main(args: Array<String>) {
 	runApplication<SpringCharsetReflectionAnnotation>(*args)
 }
 
-@Component
+//@Component
 class CharsetTest: ApplicationRunner{
 	override fun run(args: ApplicationArguments?) {
 		val originalString = "That will cost €10.한글"
@@ -26,7 +26,28 @@ class CharsetTest: ApplicationRunner{
 		println(stringAsByteArray)
 		println(utf8String)
 		println(asciiString)
+	}
+}
 
+
+object MyFunction{
+	operator fun invoke(str: String): String{
+		return str.lowercase() //소문자로 바꿔줌
 	}
 
+	operator fun plus(str: String): String{
+		return "PREFIX$str"
+	}
+}
+
+@Component
+class InvokeTest: ApplicationRunner{
+	override fun run(args: ApplicationArguments) {
+		val upperCaseString = "HELLO WORLD"
+		println(MyFunction.invoke(upperCaseString))
+		println(MyFunction(upperCaseString))
+
+		println(MyFunction.plus(upperCaseString))
+		println(MyFunction + upperCaseString)
+	}
 }
