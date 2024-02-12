@@ -55,3 +55,4 @@ include("spring-cloud-config-client")
 
 include("mongodb-concurrency-tutorial")
 include("kotlin-charset-reflection-annotation")
+include("multiple-request-in-single-endpoint")
