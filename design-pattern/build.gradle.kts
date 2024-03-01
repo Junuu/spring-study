@@ -13,5 +13,7 @@ dependencies {
 	// https://mvnrepository.com/artifact/com.github.spotbugs/spotbugs-annotations
 	implementation("com.github.spotbugs:spotbugs-annotations:4.7.3")
 
-
+	implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
+	implementation("io.github.openfeign:feign-okhttp")
+	implementation(enforcedPlatform("org.springframework.cloud:spring-cloud-dependencies:2022.0.3"))
 }
