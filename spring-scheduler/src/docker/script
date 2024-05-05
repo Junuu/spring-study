@@ -1,0 +1,5 @@
+docker run --name my-redis-container -d -p 6379:6379 redis
+
+docker exec -it [CONTAINER_NAME_OR_ID] redis-cli
+
+KEYS *

@@ -1,0 +1,15 @@
+spring:
+  profiles:
+    active: local
+  lifecycle:
+    timeout-per-shutdown-phase: 20s
+
+logging:
+  level:
+    net.javacrumbs.shedlock: DEBUG
+
+
+server:
+  shutdown: graceful
+
+
