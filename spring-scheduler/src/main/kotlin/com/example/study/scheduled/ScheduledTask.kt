@@ -11,12 +11,12 @@ import java.lang.Thread.sleep
 
 @Component
 class ScheduledTask {
-    @Scheduled(fixedDelay = 1000)
+//    @Scheduled(fixedDelay = 1000)
     fun run(){
         logger.info { "Hello ScheduledTask!" }
     }
 
-    @Scheduled(fixedDelay = 1000)
+//    @Scheduled(fixedDelay = 1000)
     fun run2(){
         sleep(3000)
         logger.info { "Hello ScheduledTask2!" }
