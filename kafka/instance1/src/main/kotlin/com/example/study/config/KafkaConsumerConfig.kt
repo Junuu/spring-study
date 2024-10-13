@@ -10,10 +10,11 @@ import org.springframework.kafka.annotation.EnableKafka
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory
 import org.springframework.kafka.core.ConsumerFactory
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory
+import org.springframework.kafka.listener.ContainerProperties
 import org.springframework.kafka.support.serializer.JsonDeserializer
 
-//@Configuration
-//@EnableKafka
+@Configuration
+@EnableKafka
 class KafkaConsumerConfig {
     @Value("\${spring.kafka.consumer.bootstrap-servers}")
     private lateinit var BOOTSTRAP_ADDRESS: String
@@ -36,6 +37,8 @@ class KafkaConsumerConfig {
         props[ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG] = BOOTSTRAP_ADDRESS
         props[ConsumerConfig.AUTO_OFFSET_RESET_CONFIG] = AUTO_OFFSET_RESET
         props[ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG] = AUTO_COMMIT
+        props[ConsumerConfig.MAX_POLL_RECORDS_CONFIG] = 10
+        props[ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG] = 2000
         return DefaultKafkaConsumerFactory(
             props,
             StringDeserializer(),
@@ -47,6 +50,7 @@ class KafkaConsumerConfig {
     fun myContainerFactory(): ConcurrentKafkaListenerContainerFactory<String, TestDto> {
         val factory = ConcurrentKafkaListenerContainerFactory<String, TestDto>()
         factory.consumerFactory = consumerFactory()
+        factory.containerProperties.ackMode = ContainerProperties.AckMode.BATCH
         return factory
     }
 }

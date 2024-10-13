@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit
 
 
 @SpringBootTest
-@ContextConfiguration(classes = [Application::class])
+@ContextConfiguration(classes = [KafkaTestApplication::class])
 @ActiveProfiles("local")
 class EmbeddedKafkaIntegrationTest (
 	@Autowired private val producer: KafkaProducer,

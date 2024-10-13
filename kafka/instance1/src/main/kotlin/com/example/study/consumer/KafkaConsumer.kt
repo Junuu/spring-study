@@ -4,19 +4,19 @@ import com.example.study.producer.TestDto
 import mu.KotlinLogging
 import org.springframework.kafka.annotation.KafkaListener
 import org.springframework.kafka.support.Acknowledgment
-import org.springframework.messaging.handler.annotation.Payload
 import org.springframework.stereotype.Component
-import java.util.*
+import java.lang.Thread.sleep
 
 
-//@Component
+@Component
 class KafkaConsumer{
     val logger =  KotlinLogging.logger{}
 
-    @KafkaListener(topics = ["testTopic"], groupId = "#{ T(java.util.UUID).randomUUID().toString() }"
-    ,containerFactory = "myContainerFactory")
-    fun consume(payload: TestDto, acknowledgment: Acknowledgment) {
+    @KafkaListener(topics = ["test"], groupId = "test", containerFactory = "myContainerFactory")
+    fun consume(payload: TestDto) {
         logger.info("Consumer start: $payload")
-        acknowledgment.acknowledge()
+        sleep(1000)
+        logger.info("Consumer end: $payload")
     }
 }
+
