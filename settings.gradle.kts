@@ -63,3 +63,5 @@ include("logback")
 
 include("feature-flag")
 include("spin-lock")
+include("spring-bean-qualifier")
+include("hibernate-flush")
