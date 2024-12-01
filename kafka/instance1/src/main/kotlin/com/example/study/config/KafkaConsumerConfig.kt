@@ -39,6 +39,7 @@ class KafkaConsumerConfig {
         props[ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG] = AUTO_COMMIT
         props[ConsumerConfig.MAX_POLL_RECORDS_CONFIG] = 10
         props[ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG] = 2000
+        props[ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG] = 2000
         return DefaultKafkaConsumerFactory(
             props,
             StringDeserializer(),
@@ -51,6 +52,8 @@ class KafkaConsumerConfig {
         val factory = ConcurrentKafkaListenerContainerFactory<String, TestDto>()
         factory.consumerFactory = consumerFactory()
         factory.containerProperties.ackMode = ContainerProperties.AckMode.BATCH
+        factory.isBatchListener = true
+        factory.containerProperties.idleBetweenPolls = 3000L
         return factory
     }
 }

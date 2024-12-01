@@ -13,10 +13,10 @@ class KafkaConsumer{
     val logger =  KotlinLogging.logger{}
 
     @KafkaListener(topics = ["test"], groupId = "test", containerFactory = "myContainerFactory")
-    fun consume(payload: TestDto) {
-        logger.info("Consumer start: $payload")
+    fun consume(payloads: List<TestDto>) {
+        logger.info("Consumer start: $payloads")
         sleep(1000)
-        logger.info("Consumer end: $payload")
+        logger.info("Consumer end: $payloads")
     }
 }
 
