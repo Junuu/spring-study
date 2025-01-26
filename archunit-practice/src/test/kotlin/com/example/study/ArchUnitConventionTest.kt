@@ -139,15 +139,15 @@ class FeignClientEnumTest {
                 object : ArchCondition<JavaMethod>("feign method 반환값 가져오기") {
                     override fun check(method: JavaMethod, events: ConditionEvents) {
                         val returnType: JavaType = method.returnType
-                        val returnTypeClass: JavaClass = returnType.toErasure()
+                        val actualTypes = getActualTypes(returnType)
 
-                        if(isUsingEnum(method = method, returnType = returnType, returnTypeClass = returnTypeClass, events = events)){
+                        if(isUsingEnum(method = method, actualTypeArguments = actualTypes, events = events)){
                             return
                         }
 
-                        checkFieldsRecursively(returnType, events){ dtoClass: JavaClass, field: JavaField, events: ConditionEvents  ->
+                        checkFieldsRecursively(actualTypes, events){ fieldsActualTypes: List<JavaType>, events: ConditionEvents  ->
 
-                            if(isUsingEnum(method = method, returnType = field.type, returnTypeClass = field.rawType, events = events)){
+                            if(isUsingEnum(method = method, actualTypeArguments = fieldsActualTypes, events = events)){
                                 return@checkFieldsRecursively true
                             }
                             return@checkFieldsRecursively false
@@ -158,55 +158,56 @@ class FeignClientEnumTest {
         rule.check(importedClasses)
     }
 
-    private fun isUsingEnum(method: JavaMethod, returnType: JavaType, returnTypeClass: JavaClass, events: ConditionEvents) : Boolean{
-        if(returnType is JavaParameterizedType){
+    /**
+     * @param javaType 실제 메서드의 반환타입
+     * @return Map<K,V> 인 경우에는 List의 size가 2로 반환된다.
+     */
+    private fun getActualTypes(javaType: JavaType): List<JavaType> {
+        return when(javaType){
+            is JavaClass -> listOf(javaType)
             // actualTypeArguments를 활용하면 List<T> 등의 구체타입을 가져올 수 있다.
-            val actualTypeArguments: List<JavaType> = returnType.actualTypeArguments
-            // Map<K,V> 인 경우에는 List의 size가 2개라서 순회해야 한다.
-            actualTypeArguments.forEach { javaType: JavaType ->
-                if(javaType.toErasure().isEnum){
-                    events.add(
-                        SimpleConditionEvent.violated(
-                            method,
-                            "Feign 메서드 ${method.fullName}에서 enum을 직접 리턴시키고 있습니다."
-                        )
+            // flatMap 활용하는 이유는 Map<String, Map<String, Enum>> 등의 중첩 제네릭이 활용될때 재귀적으로 호출하면서 모든 구체클래스를 들고오기 위함이다.
+            is JavaParameterizedType -> javaType.actualTypeArguments.flatMap { getActualTypes(it) }
+            else -> throw UnsupportedOperationException("지원하지 않는 타입입니다.")
+        }
+    }
+
+    private fun isUsingEnum(method: JavaMethod, actualTypeArguments: List<JavaType>, events: ConditionEvents) : Boolean{
+        actualTypeArguments.forEach { javaType: JavaType ->
+            if(javaType.toErasure().isEnum){
+                events.add(
+                    SimpleConditionEvent.violated(
+                        method,
+                        "Feign 메서드 ${method.fullName}에서 enum을 직접 리턴시키고 있습니다."
                     )
-                    return true
-                }
+                )
+                return true
             }
         }
-
-        if(returnTypeClass.isEnum){
-            events.add(
-                SimpleConditionEvent.violated(
-                    method,
-                    "Feign 메서드 ${method.fullName}에서 enum을 직접 리턴시키고 있습니다."
-                )
-            )
-            return true
-        }
-
         return false
     }
 
     private fun checkFieldsRecursively(
-        javaType: JavaType,
+        actualTypeArguments: List<JavaType>,
         events: ConditionEvents,
         visitedTypes: MutableSet<JavaType> = mutableSetOf(),
-        block: (JavaClass, JavaField, ConditionEvents) -> Boolean,
+        block: (actualTypes: List<JavaType> , ConditionEvents) -> Boolean,
     ){
-        if(!visitedTypes.add(javaType)){
-            return
-        }
+        actualTypeArguments.forEach {javaType: JavaType ->
+            if(!visitedTypes.add(javaType)){
+                return
+            }
 
-        val dtoClass: JavaClass = javaType.toErasure()
+            val dtoClass: JavaClass = javaType.toErasure()
 
-        dtoClass.fields.forEach { filed: JavaField ->
-            val fieldJavaClass: JavaClass = filed.rawType
-            if(block(fieldJavaClass, filed, events)) return
+            dtoClass.fields.forEach { filed: JavaField ->
+                val actualTypes: List<JavaType> = getActualTypes(filed.type)
+                if(block(actualTypes, events)) return
 
-            if(isMyClass(fieldJavaClass)){
-                checkFieldsRecursively(fieldJavaClass, events, visitedTypes, block)
+                val fieldJavaClass: JavaClass = filed.rawType
+                if(isMyClass(fieldJavaClass)){
+                    checkFieldsRecursively(actualTypes, events, visitedTypes, block)
+                }
             }
         }
     }

@@ -2,6 +2,7 @@ package com.example.study.client
 
 import com.example.study.annotation.AllowedClientUsingEnumReturnType
 import org.springframework.cloud.openfeign.FeignClient
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
 
 @FeignClient(
@@ -11,8 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping
 )
 interface TestFeignClient {
     @GetMapping("/enum-response")
-    @AllowedClientUsingEnumReturnType
-    fun getProfiles(): NestedClass
+//    @AllowedClientUsingEnumReturnType
+    fun getProfiles(): List<NestedClass>
 
     @GetMapping("/enum-response2")
     @AllowedClientUsingEnumReturnType
