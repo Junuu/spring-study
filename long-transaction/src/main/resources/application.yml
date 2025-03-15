@@ -1,0 +1,28 @@
+# Database Settings
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/your_database_name?useSSL=false&allowPublicKeyRetrieval=true
+    username: your_database_user
+    password: your_database_password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        session_factory:
+          interceptor: com.example.study.hibernate.interceptor.TransactionTimeInterceptor
+        format_sql: true
+    show-sql: true
+  transaction:
+    default-timeout: 5 # 모든 트랜잭션의 기본 타임아웃 (초 단위)
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+
